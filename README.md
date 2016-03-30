@@ -1,4 +1,6 @@
 # A
 a php framework
 
-I am webbc,I code php very well!
+### Author
+* `webdd` webxding@gmall.com
+* `webbc` 406391609@qq.com
