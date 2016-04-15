@@ -4,15 +4,18 @@
  * Date: 2016-04-14
  */
 
-include_once 'environment.php';
+define('ENVIRONMENT', 'development');
 
 define('ROOT_PATH', dirname(__FILE__));
-define('APP_PATH', ROOT_PATH . '/application');
 define('FRAMEWORK_PATH', ROOT_PATH . '/framework');
 define('VENDOR_PATH', ROOT_PATH . '/vendor');
+define('APPLICATION_PATH', ROOT_PATH . '/application');
 
 switch (ENVIRONMENT) {
     case 'development' :
+        break;
+    case 'product' :
+    case 'test' :
         break;
     default :
         header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
@@ -20,11 +23,25 @@ switch (ENVIRONMENT) {
         exit(1); // EXIT_ERROR
 }
 
-// auto loader
-include_once VENDOR_PATH . '/Psr/Loader/Psr4AutoLoader.php';
-$loader = new \Psr\Loader\Psr4AutoloaderClass();
-$loader->register();
+// composer auto loader
+include_once VENDOR_PATH . '/autoload.php';
 
-$loader->addNamespace('framework', FRAMEWORK_PATH);
-$loader->addNamespace('vendor', VENDOR_PATH);
-$loader->addNamespace('application', APP_PATH);
+// register namespace
+$loader = new Keradus\Psr4Autoloader();
+$loader->register();
+$loader->addNamespace('Framework', FRAMEWORK_PATH);
+$loader->addNamespace('Vendor', VENDOR_PATH);
+$loader->addNamespace('Application', APPLICATION_PATH);
+
+// router
+$router = new Framework\Core\Router();
+// logger
+$logger = new Framework\Core\Logger();
+
+$app = Framework\Core\Application::getInstance();
+$app->setLoader($loader);
+$app->setRouter($router);
+$app->setLogger($logger);
+
+
+return $app;

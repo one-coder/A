@@ -5,5 +5,5 @@
  */
 
 // include bootstrap file
-include_once '../bootstrap.php';
-
+$app = require __DIR__ . '/../bootstrap.php';
+$app->run();
