@@ -6,9 +6,9 @@
 
 namespace Framework\Core;
 
-use \Aura\Router\RouterContainer;
-use \Psr\Log\LoggerInterface;
-use \Keradus\Psr4Autoloader;
+use Aura\Router\RouterContainer;
+use Psr\Log\LoggerInterface;
+use Keradus\Psr4Autoloader;
 
 class Application {
 
@@ -77,6 +77,6 @@ class Application {
      *
      */
     public function run() {
-        echo "hello world!";
+
     }
 }

@@ -35,6 +35,13 @@ $loader->addNamespace('Application', APPLICATION_PATH);
 
 // router
 $router = new Framework\Core\Router();
+
+// 加载路由配置
+require APPLICATION_PATH . '/Http/routes.php';
+
+$matcher = $router->getMatcher();
+$route = $matcher->match($request);
+
 // logger
 $logger = new Framework\Core\Logger();
 
