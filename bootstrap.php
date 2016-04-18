@@ -23,6 +23,9 @@ switch (ENVIRONMENT) {
         exit(1); // EXIT_ERROR
 }
 
+ini_set("display_errors", "On");
+error_reporting(E_ALL | E_STRICT);
+
 // composer auto loader
 include_once VENDOR_PATH . '/autoload.php';
 
@@ -35,12 +38,6 @@ $loader->addNamespace('Application', APPLICATION_PATH);
 
 // router
 $router = new Framework\Core\Router();
-
-// 加载路由配置
-require APPLICATION_PATH . '/Http/routes.php';
-
-$matcher = $router->getMatcher();
-$route = $matcher->match($request);
 
 // logger
 $logger = new Framework\Core\Logger();

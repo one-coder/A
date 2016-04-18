@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Zend\\Diactoros\\' => array($vendorDir . '/zendframework/zend-diactoros/src'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Keradus\\' => array($vendorDir . '/keradus/psr4autoloader/src'),
     'Aura\\Router\\' => array($vendorDir . '/aura/router/src'),
